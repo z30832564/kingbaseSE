@@ -1,0 +1,85 @@
+Title：Java连接金仓数据库
+Author：张传鑫
+1.在连接数据库之前，应该先装好jdk和eclipse
+2. 下载kingbase的jdbc驱动程序（见附件，选用kingbasejdbc4.jar
+	下载地址：http://www.drv5.cn/sfinfo/softdown.asp?softid=13653）将其放到工程目录下
+3. 将驱动程序加载到项目中：
+3.1
+右击项目名，选择properties
+
+3.2选择java buildpath--> libraries-->add jars将kingbasejdbc4.jar添加后apply
+
+将会出现一个reference libraries 就成功了
+
+4.下面创建数据库连接的类：
+前面需要先导入几个包：
+代码1：
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+public class Getcon {
+    public static final String url = "jdbc:kingbase://127.0.0.1/MOMO";  //MOMO改为自己数据库的名字
+    public static final String name = "com.Kingbase.Driver";
+    public static final String user = "system";
+    public static final String password = "123456";  //这里的用户名和密码大家应该都一样，不一样的设置为自己的就好
+
+    public Connection conn = null;
+    public PreparedStatement pst = null;
+
+    public Getcon(String sql) {
+        try {
+            //Class.forName(name);//指南中的这个方法运行不成功
+        	DriverManager.registerDriver(new com.kingbase.Driver());
+            conn = DriverManager.getConnection(url, user, password);//获取连接
+            pst = conn.prepareStatement(sql);//准备执行语句
+            System.out.print("yes");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void close() {
+        try {
+            this.conn.close();
+            this.pst.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+5.测试是否连接成功
+/***运行之前先打开数据库连接！！！！即登录控制管理器那个，或者在命令行打开，显示数据库等待连接才可以****/
+代码2：
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class test {
+
+    static String sql = null;
+    static Getcon db1 = null;
+    static ResultSet ret = null;
+
+    public static void main(String[] args) {
+        sql = "select *from marry.candidate";//要执行的SQL语句，改成自己的表什么的
+        db1 = new Getcon(sql);//创建数据库对象
+
+        try {
+            ret = db1.pst.executeQuery();//执行语句，ret是结果
+            while (ret.next()) {
+                String c_idcard = ret.getString(1);
+                String c_accont = ret.getString(2);
+                String c_key = ret.getString(3);
+                String c_name = ret.getString(4);
+                System.out.println(c_idcard + "\t" + c_accont + "\t" + c_key + "\t" + c_name );
+            }//显示数据
+            ret.close();
+            db1.close();//关闭连接
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
