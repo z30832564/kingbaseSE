@@ -8,7 +8,7 @@ public class Clover extends JFrame
 {  
     public Clover()  
     {  
-        super("情投意合"); setSize(400,300);  
+        super("情投意合"); setSize(900,600); setLocation(5, 5); 
         try{ UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());  
         }catch(Exception e){}  
         Container c=getContentPane();  
@@ -64,7 +64,6 @@ public class Clover extends JFrame
         		db1.pst=db1.conn.prepareStatement("select c_name,datediff(year,c_age,sysdate),c_phone,c_salary,c_workplace,meettime,point from marry.candidate,marry.records where c_idcard in (select m_id from marry.records where w_id='"+Login.c_name+"' and m_to_w>=7 and w_to_m>=7) and marry.candidate.c_idcard=marry.records.m_id and w_id='"+Login.c_name+"'");
             	ret2=db1.pst.executeQuery();
             	int row_count=ret2.getRow();
-                System.out.println(row_count);
                 if(ret2.next()) {
             		boolean flag = true;
                     while (flag) { 
@@ -102,11 +101,11 @@ public class Clover extends JFrame
         JScrollPane jsp = new JScrollPane(table);  
         c.add(jsp);
         setVisible(true);  
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
     }  
   
     public static void main(String []args)  
     {    
-    	Clover clover = new Clover();
+    	//Clover clover = new Clover();
     }  
 }  

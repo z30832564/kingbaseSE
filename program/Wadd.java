@@ -60,9 +60,9 @@ import javax.swing.*;
 	            //设置布局管理器  
 	            this.setLayout(new GridLayout(5,1));  
 	            this.setTitle("添加约见记录");  
-	            this.setSize(400,300);  
-	            this.setLocation(200, 200);       
-	            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+	            this.setSize(900,600);  
+	            this.setLocation(5, 5);       
+	            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
 	            this.setVisible(true);
 	}  
 	        public void check()

@@ -10,8 +10,8 @@ import javax.swing.*;
 	{
 	         //定义组件  
 	        JButton jb1,jb2,jb3=null;  
-	        JPanel jp1,jp2,jp3,jp4=null;  
-	        JLabel jlb1,jlb2=null;  
+	        JPanel jp1,jp2,jp3,jp4,jp5=null;  
+	        JLabel jlb1,jlb2,jlb3=null;  
 	          
 	        public static void main(String[] args) {  
 	            // TODO Auto-generated method stub  
@@ -42,7 +42,7 @@ import javax.swing.*;
                     } catch (SQLException e1) {  
                         e1.printStackTrace();  
                     }  
-	            jlb2=new JLabel(w_name_+"/n您可以选择：");  	              
+	            jlb2=new JLabel(w_name_+" 您可以选择：");  	              
 	            jp1.add(jlb1);  
 	            jp1.add(jlb2);  
 	            //面板1
@@ -58,17 +58,23 @@ import javax.swing.*;
 	        	jb3.addActionListener(this); 
 	            jp4.add(jb3);
 	            //4
+	            
+	            jp5=new JPanel();
+	            jlb3=new JLabel("MOMO婚介  缘来是你");
+	            jlb3.setFont(new java.awt.Font("Dialog", 1, 40));
+	            jp5.add(jlb3);
+	            
 	            this.add(jp1);  
 	            this.add(jp2);  
 	            this.add(jp3);  
 	            this.add(jp4); 
 	              
 	            //设置布局管理器  
-	            this.setLayout(new GridLayout(4,1));  
+	            this.setLayout(new GridLayout(5,1));  
 	            this.setTitle("个人中心");  
-	            this.setSize(400,300);  
-	            this.setLocation(200, 200);       
-	            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+	            this.setSize(900,600);  
+	            this.setLocation(5, 5);       
+	            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
 	            this.setVisible(true);  
 	  
 	}  

@@ -11,9 +11,9 @@ public class Login extends JFrame implements ActionListener {
     //定义组件  
     JButton jb1,jb2=null;  
     JRadioButton jrb1,jrb2=null;  
-    JPanel jp1,jp2,jp3,jp4=null;  
+    JPanel jp1,jp2,jp3,jp4,jp5=null;  
     JTextField jtf=null;  
-    JLabel jlb1,jlb2=null;  
+    JLabel jlb1,jlb2,jlb3=null;  
     JPasswordField jpf=null;  
     ButtonGroup bg=null;  
           
@@ -46,14 +46,19 @@ public class Login extends JFrame implements ActionListener {
         jp1=new JPanel();  
         jp2=new JPanel();  
         jp3=new JPanel();  
-        jp4=new JPanel();                 
+        jp4=new JPanel(); 
+        jp5=new JPanel(); 
           
         jlb1=new JLabel("用户名：");  
         jlb2=new JLabel("密    码：");  
+        jlb3=new JLabel("MOMO婚介  缘来是你");
+        jlb3.setFont(new java.awt.Font("Dialog", 1, 40));
           
         jtf=new JTextField(10);  
         jpf=new JPasswordField(10);  
-        //加入到JPanel中  
+        //加入到JPanel中 
+        jp5.add(jlb3);
+        
         jp1.add(jlb1);  
         jp1.add(jtf);  
           
@@ -66,19 +71,20 @@ public class Login extends JFrame implements ActionListener {
         jp4.add(jb1);  
         jp4.add(jb2);  
           
-        //加入JFrame中  
+        //加入JFrame中 
+        this.add(jp5);
         this.add(jp1);  
         this.add(jp2);  
         this.add(jp3);  
         this.add(jp4);  
         //设置布局管理器  
-        this.setLayout(new GridLayout(4,1));  
+        this.setLayout(new GridLayout(5,1));  
         //给窗口设置标题  
         this.setTitle("MOMO婚介");  
         //设置窗体大小  
-        this.setSize(300,200);  
+        this.setSize(900,600);  
         //设置窗体初始位置  
-        this.setLocation(200, 150);  
+        this.setLocation(5, 5);  
         //设置当关闭窗口时，保证JVM也退出  
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         //显示窗体  
@@ -144,16 +150,7 @@ public class Login extends JFrame implements ActionListener {
      //用户登录判断方法  
     public void c_login()  
     {  
-        if(c_name.equals(jtf.getText())&&c_pwd.equals(String.valueOf((jpf).getPassword())))  
-        {  
-//          System.out.println("登录成功");  
-            JOptionPane.showMessageDialog(null,"登录成功！","提示消息",JOptionPane.WARNING_MESSAGE);  
-            clear();  
-          //关闭当前界面  
-            dispose();  
-            //创建一个新界面，适用于教师来管理学生  
-            Cplace cplace=new Cplace();
-        }else if(jtf.getText().isEmpty()&&String.valueOf((jpf).getPassword()).equals(""))  
+        if(jtf.getText().isEmpty()&&String.valueOf((jpf).getPassword()).equals(""))  
         {  
             JOptionPane.showMessageDialog(null,"请输入用户名和密码！","提示消息",JOptionPane.WARNING_MESSAGE);  
         }else if(jtf.getText().isEmpty())  
@@ -163,6 +160,17 @@ public class Login extends JFrame implements ActionListener {
         {  
             JOptionPane.showMessageDialog(null,"请输入密码！","提示消息",JOptionPane.WARNING_MESSAGE);  
         }else  
+            if(c_name.equals(jtf.getText())&&c_pwd.equals(String.valueOf((jpf).getPassword())))  
+            {  
+//              System.out.println("登录成功");  
+                JOptionPane.showMessageDialog(null,"登录成功！","提示消息",JOptionPane.WARNING_MESSAGE);  
+                clear();  
+              //关闭当前界面  
+                dispose();  
+                 
+                Cplace cplace=new Cplace();
+            }
+            else 
         {  
             JOptionPane.showMessageDialog(null,"用户名或者密码错误！\n请重新输入","提示消息",JOptionPane.ERROR_MESSAGE);  
             //清空输入框  
@@ -179,16 +187,7 @@ public class Login extends JFrame implements ActionListener {
     
     public void w_login()  
     {  
-        if(w_name.equals(jtf.getText())&&w_pwd.equals(String.valueOf((jpf).getPassword())))  
-        {  
-//          System.out.println("登录成功");  
-             JOptionPane.showMessageDialog(null,"登录成功！","提示消息",JOptionPane.WARNING_MESSAGE);  
-             clear();  
-           //关闭当前界面  
-             dispose();  
-             //创建一个新界面，适用于教师来管理学生  
-             Wplace wplace=new Wplace();
-        }else if(jtf.getText().isEmpty()&&String.valueOf((jpf).getPassword()).equals(""))  
+        if(jtf.getText().isEmpty()&&String.valueOf((jpf).getPassword()).equals(""))  
         {  
             JOptionPane.showMessageDialog(null,"请输入用户名和密码！","提示消息",JOptionPane.WARNING_MESSAGE);  
         }else if(jtf.getText().isEmpty())  
@@ -197,7 +196,17 @@ public class Login extends JFrame implements ActionListener {
         }else if(String.valueOf((jpf).getPassword()).equals(""))  
         {  
             JOptionPane.showMessageDialog(null,"请输入密码！","提示消息",JOptionPane.WARNING_MESSAGE);  
-        }else  
+        }else  if(w_name.equals(jtf.getText())&&w_pwd.equals(String.valueOf((jpf).getPassword())))  
+        {  
+//          System.out.println("登录成功");  
+             JOptionPane.showMessageDialog(null,"登录成功！","提示消息",JOptionPane.WARNING_MESSAGE);  
+             clear();  
+           //关闭当前界面  
+             dispose();  
+             //创建一个新界面，适用于教师来管理学生  
+             Wplace wplace=new Wplace();
+        }
+         else
         {  
             JOptionPane.showMessageDialog(null,"用户名或者密码错误！\n请重新输入","提示消息",JOptionPane.ERROR_MESSAGE);  
             //清空输入框  

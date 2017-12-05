@@ -9,7 +9,7 @@ public class Wsearch extends JFrame
 {  
     public Wsearch()  
     {  
-        super("我的客户"); setSize(400,300);  
+        super("我的客户"); setSize(900,600); setLocation(5, 5);    
         try{ UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());  
         }catch(Exception e){}  
         Container c=getContentPane();  
@@ -80,7 +80,7 @@ public class Wsearch extends JFrame
         JScrollPane jsp = new JScrollPane(table);  
         c.add(jsp);
         setVisible(true);  
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
     }  
   
     public static void main(String []args)  
